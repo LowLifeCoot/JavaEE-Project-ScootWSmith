@@ -16,7 +16,7 @@ public class Account {
 	public Account(Integer id, String name) {
 		super();
 		this.id = id;
-		this.setName(name);
+		this.name = name;
 	}
 
 	public Account() {
