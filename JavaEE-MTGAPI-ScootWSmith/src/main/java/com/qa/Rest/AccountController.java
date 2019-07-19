@@ -20,19 +20,19 @@ public class AccountController {
 		this.service = service;
 	}
 
-	@Path("/addAccount")
+	@Path("/add")
 	@POST
 	public String addAccount(String account) {
 		return service.createAccount(account);
 	}
 
-	@Path("/getAllAccount")
+	@Path("/getAll")
 	@GET
 	public String getAllAccount() {
 		return service.getAllAccounts();
 	}
 
-	@Path("/getAccount/{id}")
+	@Path("/get/{id}")
 	@GET
 	public String getAccount(@PathParam("id") Integer id) {
 		return service.getAccount(id);

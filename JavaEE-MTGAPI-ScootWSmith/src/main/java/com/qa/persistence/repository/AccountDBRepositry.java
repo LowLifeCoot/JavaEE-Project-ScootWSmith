@@ -39,7 +39,7 @@ public class AccountDBRepositry implements AccountRepository {
 		// TODO Auto-generated method stub
 		Account accountTemp = em.find(Account.class, accountNumber);
 		em.remove(accountTemp);
-		return "Removed account: " + accountTemp;
+		return "Removed account: " + accountTemp.getName();
 	}
 
 	@Transactional(value = TxType.REQUIRED)
