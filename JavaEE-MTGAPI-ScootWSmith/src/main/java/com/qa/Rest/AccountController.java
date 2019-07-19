@@ -41,8 +41,6 @@ public class AccountController {
 	@DELETE
 	@Path("/delete/{id}")
 	public String deleteAccount(@PathParam("id") int accountId) throws AccountNotFoundException {
-
 		return this.service.deleteAccount(accountId);
-
 	}
 }
