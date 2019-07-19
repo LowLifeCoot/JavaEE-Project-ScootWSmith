@@ -1,7 +1,5 @@
 package com.qa.persistence.repository;
 
-import java.util.List;
-
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -62,19 +60,7 @@ public class AccountDBRepositry implements AccountRepository {
 		return null;
 	}
 
-	public int numberOfMatchingAccounts(String firstName) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public Account findAccount(Long id) {
 		return em.find(Account.class, id);
-	}
-
-	public List<Account> findAccountsByFirstName(String firstName) {
-		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE a.firstName = :firstName",
-				Account.class);
-		query.setParameter("firstName", firstName);
-		return query.getResultList();
 	}
 }

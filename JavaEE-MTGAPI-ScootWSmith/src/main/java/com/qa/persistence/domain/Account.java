@@ -11,16 +11,12 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String accountNumber;
-	private String firstName;
-	private String lastName;
+	private String name;
 
-	public Account(Integer id, String accountNumber, String firstName, String lastName) {
+	public Account(Integer id, String name) {
 		super();
 		this.id = id;
-		this.accountNumber = accountNumber;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.setName(name);
 	}
 
 	public Account() {
@@ -35,28 +31,12 @@ public class Account {
 		this.id = id;
 	}
 
-	public String getAccountNumber() {
-		return accountNumber;
+	public String getName() {
+		return name;
 	}
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

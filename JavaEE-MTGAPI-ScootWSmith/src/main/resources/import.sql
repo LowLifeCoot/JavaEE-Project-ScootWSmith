@@ -1,0 +1,1 @@
+INSERT INTO ACCOUNT (NAME) VALUES ('ScottSmith');

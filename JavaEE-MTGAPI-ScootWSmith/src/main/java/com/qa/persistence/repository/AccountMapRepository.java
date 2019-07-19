@@ -1,7 +1,6 @@
 package com.qa.persistence.repository;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.inject.Alternative;
@@ -29,29 +28,6 @@ public class AccountMapRepository implements AccountRepository {
 		return this.json.getJSONForObject(this.accountMap.values());
 	}
 
-	public int numberOfMatchingAccounts(String firstName) {
-		// double numberOfAcc = 0.0;
-
-		/// Attempt 01
-		// if (json.getJSONForObject(account).contains(firstName)) {
-		// noAcc++;
-		// }
-
-		// Loop through map here
-		/// Attempt 02
-		// accountMap.forEach((key, value) -> {
-		// if (value.getFirstName().equals(firstName)) {
-		// System.out.println(firstName);
-		// }
-		// });
-
-		// List<Account> matching = accountMap.values().stream().filter(x ->
-		// firstName.equals(x.getFirstName()))
-		// .collect(Collectors.toList());
-		// return matching.size();
-		return 0;
-	}
-
 	public String createAccount(String account) {
 		Account toAdd = this.json.getObjectForJSON(account, Account.class);
 		this.accountMap.put(this.count++, toAdd);
@@ -65,13 +41,6 @@ public class AccountMapRepository implements AccountRepository {
 	public String deleteAccount(int accountNumber) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public List<Account> findAccountsByFirstName(String firstName) {
-		return null;
-		// return this.accountMap.values().stream().filter(a ->
-		// a.getFirstName().equals(firstName))
-		// .collect(Collectors.toList());
 	}
 
 	public String updateAccount(int accountNumber, String account) {
