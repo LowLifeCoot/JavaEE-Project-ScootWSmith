@@ -23,14 +23,12 @@ public class AccountDBRepositry implements AccountRepository {
 	@Inject
 	private JSONUtil json;
 
-	@Override
 	public String getAllAccounts() {
 		// TODO Auto-generated method stub
 		TypedQuery<Account> query = em.createQuery("SELECT a FROM ACCOUNT a", Account.class);
 		return query.getResultList().toString();
 	}
 
-	@Override
 	@Transactional(value = TxType.REQUIRED)
 	public String createAccount(String account) {
 		Account toCreate = this.json.getObjectForJSON(account, Account.class);
@@ -38,7 +36,6 @@ public class AccountDBRepositry implements AccountRepository {
 		return account;
 	}
 
-	@Override
 	@Transactional(value = TxType.REQUIRED)
 	public String deleteAccount(int accountNumber) {
 		// TODO Auto-generated method stub
@@ -47,7 +44,6 @@ public class AccountDBRepositry implements AccountRepository {
 		return "Removed account: " + accountTemp;
 	}
 
-	@Override
 	@Transactional(value = TxType.REQUIRED)
 	public String updateAccount(int accountNumber, String account) {
 		// TODO Auto-generated method stub
@@ -66,7 +62,6 @@ public class AccountDBRepositry implements AccountRepository {
 		return null;
 	}
 
-	@Override
 	public int numberOfMatchingAccounts(String firstName) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -76,7 +71,6 @@ public class AccountDBRepositry implements AccountRepository {
 		return em.find(Account.class, id);
 	}
 
-	@Override
 	public List<Account> findAccountsByFirstName(String firstName) {
 		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE a.firstName = :firstName",
 				Account.class);

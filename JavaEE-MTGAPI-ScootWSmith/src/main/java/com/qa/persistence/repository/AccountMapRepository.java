@@ -3,7 +3,6 @@ package com.qa.persistence.repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Alternative;
 
@@ -25,13 +24,11 @@ public class AccountMapRepository implements AccountRepository {
 		this.json = new JSONUtil();
 	}
 
-	@Override
 	public String getAllAccounts() {
 		// TODO Auto-generated method stub
 		return this.json.getJSONForObject(this.accountMap.values());
 	}
 
-	@Override
 	public int numberOfMatchingAccounts(String firstName) {
 		// double numberOfAcc = 0.0;
 
@@ -48,12 +45,13 @@ public class AccountMapRepository implements AccountRepository {
 		// }
 		// });
 
-		List<Account> matching = accountMap.values().stream().filter(x -> firstName.equals(x.getFirstName()))
-				.collect(Collectors.toList());
-		return matching.size();
+		// List<Account> matching = accountMap.values().stream().filter(x ->
+		// firstName.equals(x.getFirstName()))
+		// .collect(Collectors.toList());
+		// return matching.size();
+		return 0;
 	}
 
-	@Override
 	public String createAccount(String account) {
 		Account toAdd = this.json.getObjectForJSON(account, Account.class);
 		this.accountMap.put(this.count++, toAdd);
@@ -64,19 +62,18 @@ public class AccountMapRepository implements AccountRepository {
 		}
 	}
 
-	@Override
 	public String deleteAccount(int accountNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public List<Account> findAccountsByFirstName(String firstName) {
-		return this.accountMap.values().stream().filter(a -> a.getFirstName().equals(firstName))
-				.collect(Collectors.toList());
+		return null;
+		// return this.accountMap.values().stream().filter(a ->
+		// a.getFirstName().equals(firstName))
+		// .collect(Collectors.toList());
 	}
 
-	@Override
 	public String updateAccount(int accountNumber, String account) {
 		Account toUpdate = this.json.getObjectForJSON(account, Account.class);
 		this.accountMap.replace(accountNumber, toUpdate);
