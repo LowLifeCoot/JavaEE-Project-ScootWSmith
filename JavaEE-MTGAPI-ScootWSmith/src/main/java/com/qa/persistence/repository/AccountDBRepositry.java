@@ -23,8 +23,8 @@ public class AccountDBRepositry implements AccountRepository {
 
 	public String getAllAccounts() {
 		// TODO Auto-generated method stub
-		TypedQuery<Account> query = em.createQuery("SELECT a FROM ACCOUNT a", Account.class);
-		return query.getResultList().toString();
+		TypedQuery<Account> query = em.createQuery("SELECT a FROM Account a", Account.class);
+		return json.getJSONForObject(query.getResultList());
 	}
 
 	@Transactional(value = TxType.REQUIRED)
