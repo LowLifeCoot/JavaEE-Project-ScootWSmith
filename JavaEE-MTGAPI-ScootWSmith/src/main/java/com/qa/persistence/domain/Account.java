@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Account {
 
+	// temp
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
