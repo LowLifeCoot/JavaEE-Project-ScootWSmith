@@ -23,12 +23,10 @@ public class AccountDBRepositry implements AccountRepository {
 	private JSONUtil json;
 
 	public String getAllAccounts() {
-		// TODO Auto-generated method stub
 		TypedQuery<Account> query = em.createQuery("SELECT a FROM Account a", Account.class);
 		return json.getJSONForObject(query.getResultList());
 	}
 
-	// TODO
 	// To add all cards from a deck to the account specified
 	@Transactional(value = TxType.REQUIRED)
 	public String createAccount(Deck deck, String account) {
@@ -39,7 +37,6 @@ public class AccountDBRepositry implements AccountRepository {
 
 	@Transactional(value = TxType.REQUIRED)
 	public String deleteAccount(int accountNumber) {
-		// TODO Auto-generated method stub
 		Account accountTemp = em.find(Account.class, accountNumber);
 		em.remove(accountTemp);
 		return "Removed account: " + accountTemp.getName();
@@ -47,20 +44,14 @@ public class AccountDBRepositry implements AccountRepository {
 
 	@Transactional(value = TxType.REQUIRED)
 	public String updateAccount(int accountNumber, String account) {
-		// TODO Auto-generated method stub
 		// if id is same then replace data at database
 
-		// attempt 01
-		// TypedQuery<Account> query = em.createQuery("UPDATE ACCOUNT SET Account = :acc
-		// + WHERE Id = :id", Account.class);
-		//
-		// query.setParameter("acc", accountNumberc);
-		// query.setParameter("id", );
-		//
-		// attempt 02
-		// TypedQuery<Account> query = em.createQuery("UPDATE a FROM ACCOUNT a WHERE Id
-		// = " + id, Account.class);
-		return null;
+		Account current = this.em.find(Account.class, accountNumber);
+		Account toChange = this.json.getObjectForJSON(account, Account.class);
+		current.setName(toChange.getName());
+		current.setPassword(toChange.getPassword());
+		this.em.persist(toChange);
+		return SUCCESS;
 	}
 
 	public Account findAccount(Long id) {
@@ -68,7 +59,7 @@ public class AccountDBRepositry implements AccountRepository {
 	}
 
 	public String createAccount(String account) {
-		// TODO Auto-generated method stub
-		return null;
+		this.em.persist(this.json.getObjectForJSON(account, Account.class));
+		return SUCCESS;
 	}
 }

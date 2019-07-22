@@ -14,6 +14,7 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private String password;
 
 	@ManyToOne
 	private Deck deck;
@@ -26,10 +27,11 @@ public class Account {
 		this.deck = deck;
 	}
 
-	public Account(Integer id, String name) {
+	public Account(Integer id, String name, String password) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.password = password;
 	}
 
 	public Account() {
@@ -50,6 +52,14 @@ public class Account {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
