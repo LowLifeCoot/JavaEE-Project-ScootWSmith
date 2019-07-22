@@ -1,7 +1,6 @@
 package com.qa.service;
 
 import javax.inject.Inject;
-import javax.security.auth.login.AccountNotFoundException;
 
 import com.qa.persistence.repository.AccountRepository;
 
@@ -19,11 +18,11 @@ public class AccountServiceImpl implements AccountService {
 
 	}
 
-	public String deleteAccount(int accountId) throws AccountNotFoundException {
+	public String deleteAccount(int accountId) {
 		return this.repo.deleteAccount(accountId);
 	}
 
-	public String updateAccount(int accountId, String account) throws AccountNotFoundException {
+	public String updateAccount(int accountId, String account) {
 		return this.repo.updateAccount(accountId, account);
 	}
 
