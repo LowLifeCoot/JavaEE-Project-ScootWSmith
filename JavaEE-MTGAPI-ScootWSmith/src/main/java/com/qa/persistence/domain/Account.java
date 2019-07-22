@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Account {
@@ -15,17 +14,6 @@ public class Account {
 	private Integer id;
 	private String name;
 	private String password;
-
-	@ManyToOne
-	private Deck deck;
-
-	public Deck getDeck() {
-		return deck;
-	}
-
-	public void setDeck(Deck deck) {
-		this.deck = deck;
-	}
 
 	public Account(Integer id, String name, String password) {
 		super();

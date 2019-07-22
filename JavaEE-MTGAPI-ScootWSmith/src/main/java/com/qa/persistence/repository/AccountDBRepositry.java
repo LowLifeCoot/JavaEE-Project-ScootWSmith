@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
 import com.qa.persistence.domain.Account;
-import com.qa.persistence.domain.Deck;
 import com.qa.util.JSONUtil;
 
 @Default
@@ -29,7 +28,7 @@ public class AccountDBRepositry implements AccountRepository {
 
 	// To add all cards from a deck to the account specified
 	@Transactional(value = TxType.REQUIRED)
-	public String createAccount(Deck deck, String account) {
+	public String createAccount(String account) {
 		Account toCreate = this.json.getObjectForJSON(account, Account.class);
 		this.em.persist(toCreate);
 		return account;
@@ -56,10 +55,5 @@ public class AccountDBRepositry implements AccountRepository {
 
 	public Account findAccount(Long id) {
 		return em.find(Account.class, id);
-	}
-
-	public String createAccount(String account) {
-		this.em.persist(this.json.getObjectForJSON(account, Account.class));
-		return SUCCESS;
 	}
 }
