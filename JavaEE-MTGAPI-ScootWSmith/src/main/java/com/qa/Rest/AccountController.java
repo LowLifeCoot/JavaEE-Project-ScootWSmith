@@ -1,12 +1,11 @@
 package com.qa.Rest;
 
 import javax.inject.Inject;
-import javax.security.auth.login.AccountNotFoundException;
-import javax.websocket.server.PathParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 import com.qa.service.AccountService;
 
@@ -40,13 +39,13 @@ public class AccountController {
 
 	@POST
 	@Path("/update/{id}")
-	public String updateAccount(@PathParam("id") int accountId, String account) throws AccountNotFoundException {
+	public String updateAccount(@PathParam("id") Integer accountId, String account) {
 		return this.service.updateAccount(accountId, account);
 	}
 
 	@DELETE
 	@Path("/delete/{id}")
-	public String deleteAccount(@PathParam("id") int accountId) throws AccountNotFoundException {
+	public String deleteAccount(@PathParam("id") Integer accountId) {
 		return this.service.deleteAccount(accountId);
 	}
 }

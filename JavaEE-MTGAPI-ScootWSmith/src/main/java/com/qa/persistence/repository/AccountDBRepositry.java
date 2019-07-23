@@ -31,7 +31,7 @@ public class AccountDBRepositry implements AccountRepository {
 	public String createAccount(String account) {
 		Account toCreate = this.json.getObjectForJSON(account, Account.class);
 		this.em.persist(toCreate);
-		return account;
+		return SUCCESS;
 	}
 
 	@Transactional(value = TxType.REQUIRED)
