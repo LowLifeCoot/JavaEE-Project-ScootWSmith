@@ -33,4 +33,8 @@ public class DeckServiceImpl implements DeckService {
 		return this.repo.getAllCards();
 	}
 
+	public String getCardsForUser(Integer accountId) {
+		return this.repo.getCardsForUser(accountId);
+	}
+
 }

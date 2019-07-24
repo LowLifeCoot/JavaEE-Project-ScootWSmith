@@ -49,4 +49,10 @@ public class DeckController {
 		return this.service.deleteCard(accountId);
 	}
 
+	@GET
+	@Path("/getUsers/{id}")
+	public String getCardsForUser(@PathParam("id") Integer accountId) {
+		return this.service.getCardsForUser(accountId);
+	}
+
 }

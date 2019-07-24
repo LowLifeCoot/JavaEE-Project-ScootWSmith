@@ -13,9 +13,10 @@ public class Deck {
 	private Integer id;
 	private String name;
 	private String url;
-	private Integer account_ID;
 
-	public Deck(Integer id, String name, String url, Integer account_ID) {
+	private Long account_ID;
+
+	public Deck(Integer id, String name, String url, Long account_ID) {
 		super();
 		this.id = id;
 		this.setName(name);
@@ -43,11 +44,11 @@ public class Deck {
 		this.url = url;
 	}
 
-	public Integer getAccount_ID() {
+	public Long getAccount_ID() {
 		return account_ID;
 	}
 
-	public void setAccount_ID(Integer account_ID) {
+	public void setAccount_ID(Long account_ID) {
 		this.account_ID = account_ID;
 	}
 }

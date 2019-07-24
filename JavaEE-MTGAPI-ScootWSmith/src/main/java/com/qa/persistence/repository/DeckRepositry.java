@@ -11,4 +11,6 @@ public interface DeckRepositry {
 	String deleteCard(int cardNumber);
 
 	String updateCard(int cardNumber, String card);
+
+	String getCardsForUser(Integer id);
 }

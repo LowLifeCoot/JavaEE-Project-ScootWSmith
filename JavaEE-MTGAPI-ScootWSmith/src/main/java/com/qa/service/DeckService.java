@@ -13,4 +13,6 @@ public interface DeckService {
 
 	String getAllCard();
 
+	String getCardsForUser(Integer accountId);
+
 }

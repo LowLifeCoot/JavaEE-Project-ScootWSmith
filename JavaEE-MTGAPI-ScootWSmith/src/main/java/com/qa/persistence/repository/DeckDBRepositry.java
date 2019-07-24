@@ -26,6 +26,11 @@ public class DeckDBRepositry implements DeckRepositry {
 		return json.getJSONForObject(query.getResultList());
 	}
 
+	public String getCardsForUser(Integer id) {
+		TypedQuery<Deck> query = em.createQuery("SELECT a FROM Deck a where a.account_ID = '" + id + "'", Deck.class);
+		return json.getJSONForObject(query.getResultList());
+	}
+
 	@Transactional
 	public String createCard(String card) {
 		Deck toCreate = this.json.getObjectForJSON(card, Deck.class);
