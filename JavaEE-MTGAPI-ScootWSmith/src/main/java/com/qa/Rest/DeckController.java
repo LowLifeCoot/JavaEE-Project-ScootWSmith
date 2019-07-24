@@ -1,12 +1,11 @@
 package com.qa.Rest;
 
 import javax.inject.Inject;
-import javax.security.auth.login.AccountNotFoundException;
-import javax.websocket.server.PathParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 import com.qa.service.DeckService;
 
@@ -26,7 +25,7 @@ public class DeckController {
 		return service.createCard(card);
 	}
 
-	@Path("/get")
+	@Path("/getAll")
 	@GET
 	public String getAllCard() {
 		return service.getAllCard();
@@ -40,13 +39,13 @@ public class DeckController {
 
 	@POST
 	@Path("/update/{id}")
-	public String updateCard(@PathParam("id") int cardId, String card) throws AccountNotFoundException {
+	public String updateCard(@PathParam("id") Integer cardId, String card) {
 		return this.service.updateCard(cardId, card);
 	}
 
 	@DELETE
 	@Path("/delete/{id}")
-	public String deleteCard(@PathParam("id") int accountId) throws AccountNotFoundException {
+	public String deleteCard(@PathParam("id") Integer accountId) {
 		return this.service.deleteCard(accountId);
 	}
 

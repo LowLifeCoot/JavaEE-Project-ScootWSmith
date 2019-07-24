@@ -30,7 +30,7 @@ public class DeckDBRepositry implements DeckRepositry {
 	public String createCard(String card) {
 		Deck toCreate = this.json.getObjectForJSON(card, Deck.class);
 		this.em.persist(toCreate);
-		return card;
+		return SUCCESS + "Adding the following informatiion: " + toCreate.getName();
 	}
 
 	@Transactional(value = TxType.REQUIRED)
@@ -40,8 +40,17 @@ public class DeckDBRepositry implements DeckRepositry {
 		return "Removed Card: " + cardTemp.getName();
 	}
 
+	@Transactional(value = TxType.REQUIRED)
 	public String updateCard(int cardNumber, String card) {
-		return null;
+		// if id is same then replace data at database
+
+		Deck current = this.em.find(Deck.class, cardNumber);
+		Deck toChange = this.json.getObjectForJSON(card, Deck.class);
+		current.setName(toChange.getName());
+		current.setUrl(toChange.getUrl());
+		current.setAccount_ID(toChange.getAccount_ID());
+		this.em.persist(toChange);
+		return SUCCESS;
 	}
 
 }

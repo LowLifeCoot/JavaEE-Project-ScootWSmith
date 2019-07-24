@@ -13,12 +13,18 @@ public class Deck {
 	private Integer id;
 	private String name;
 	private String url;
+	private Integer account_ID;
 
-	public Deck(Integer id, String name, String url) {
+	public Deck(Integer id, String name, String url, Integer account_ID) {
 		super();
 		this.id = id;
 		this.setName(name);
 		this.setUrl(url);
+		this.setAccount_ID(account_ID);
+	}
+
+	public Deck() {
+
 	}
 
 	public String getName() {
@@ -35,5 +41,13 @@ public class Deck {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Integer getAccount_ID() {
+		return account_ID;
+	}
+
+	public void setAccount_ID(Integer account_ID) {
+		this.account_ID = account_ID;
 	}
 }

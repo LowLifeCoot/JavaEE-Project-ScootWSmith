@@ -26,7 +26,6 @@ public class AccountDBRepositry implements AccountRepository {
 		return json.getJSONForObject(query.getResultList());
 	}
 
-	// To add all cards from a deck to the account specified
 	@Transactional(value = TxType.REQUIRED)
 	public String createAccount(String account) {
 		Account toCreate = this.json.getObjectForJSON(account, Account.class);

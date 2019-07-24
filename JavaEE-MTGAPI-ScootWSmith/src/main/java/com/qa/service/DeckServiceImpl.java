@@ -1,7 +1,6 @@
 package com.qa.service;
 
 import javax.inject.Inject;
-import javax.security.auth.login.AccountNotFoundException;
 
 import com.qa.persistence.repository.DeckRepositry;
 
@@ -18,11 +17,11 @@ public class DeckServiceImpl implements DeckService {
 		return this.repo.createCard(card);
 	}
 
-	public String deleteCard(int cardId) throws AccountNotFoundException {
+	public String deleteCard(int cardId) {
 		return this.repo.deleteCard(cardId);
 	}
 
-	public String updateCard(int cardId, String card) throws AccountNotFoundException {
+	public String updateCard(int cardId, String card) {
 		return this.repo.updateCard(cardId, card);
 	}
 
