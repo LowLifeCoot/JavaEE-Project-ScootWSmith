@@ -10,4 +10,8 @@ public interface AccountService {
 	String updateAccount(int accountId, String account);
 
 	String getAccount(Integer id);
+
+	String login(String account);
+
+	boolean checkUsername(String account);
 }

@@ -48,11 +48,37 @@ public class AccountDBRepositry implements AccountRepository {
 		Account toChange = this.json.getObjectForJSON(account, Account.class);
 		current.setName(toChange.getName());
 		current.setPassword(toChange.getPassword());
+
 		this.em.persist(toChange);
-		return SUCCESS;
+		return SUCCESS + toChange;
 	}
 
 	public Account findAccount(Long id) {
 		return em.find(Account.class, id);
+	}
+
+	public String login(String account) {
+		Account newAccount = this.json.getObjectForJSON(account, Account.class);
+		String username = newAccount.getName();
+		String password = newAccount.getPassword();
+
+		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE name = '" + username + "'",
+				Account.class);
+
+		Account logAcc = (Account) query.getSingleResult();
+
+		return this.json.getJSONForObject(logAcc) + "This";
+	}
+
+	public boolean checkUsername(String account) {
+		Account user = this.json.getObjectForJSON(account, Account.class);
+		String username = user.getName();
+		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE name='" + username + "'",
+				Account.class);
+		if (query.getResultList().isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

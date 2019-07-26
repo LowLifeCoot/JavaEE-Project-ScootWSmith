@@ -26,7 +26,7 @@ public class DeckServiceImpl implements DeckService {
 	}
 
 	public String getCard(Integer id) {
-		return null;
+		return this.repo.getCard(id);
 	}
 
 	public String getAllCard() {

@@ -48,4 +48,16 @@ public class AccountController {
 	public String deleteAccount(@PathParam("id") Integer accountId) {
 		return this.service.deleteAccount(accountId);
 	}
+
+	@POST
+	@Path("/login")
+	public String login(String account) {
+		return this.service.login(account);
+	}
+
+	@POST
+	@Path("/checkUsername")
+	public boolean checkUsername(String account) {
+		return this.service.checkUsername(account);
+	}
 }

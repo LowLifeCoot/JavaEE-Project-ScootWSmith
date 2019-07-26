@@ -47,8 +47,6 @@ public class DeckDBRepositry implements DeckRepositry {
 
 	@Transactional(value = TxType.REQUIRED)
 	public String updateCard(int cardNumber, String card) {
-		// if id is same then replace data at database
-
 		Deck current = this.em.find(Deck.class, cardNumber);
 		Deck toChange = this.json.getObjectForJSON(card, Deck.class);
 		current.setName(toChange.getName());
@@ -56,6 +54,11 @@ public class DeckDBRepositry implements DeckRepositry {
 		current.setAccount_ID(toChange.getAccount_ID());
 		this.em.persist(toChange);
 		return SUCCESS;
+	}
+
+	public String getCard(Integer id) {
+		// TODO Auto-generated method stub
+		return "Need To Implement";
 	}
 
 }

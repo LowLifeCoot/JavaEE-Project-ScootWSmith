@@ -27,7 +27,14 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public String getAccount(Integer id) {
-		return null;
+		return this.repo.getAllAccounts();
 	}
 
+	public String login(String account) {
+		return this.repo.login(account);
+	}
+
+	public boolean checkUsername(String account) {
+		return this.repo.checkUsername(account);
+	}
 }
