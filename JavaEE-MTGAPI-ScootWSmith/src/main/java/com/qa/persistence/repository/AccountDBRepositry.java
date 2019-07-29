@@ -3,6 +3,7 @@ package com.qa.persistence.repository;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -57,17 +58,22 @@ public class AccountDBRepositry implements AccountRepository {
 		return em.find(Account.class, id);
 	}
 
+	@Transactional(value = TxType.REQUIRED)
 	public String login(String account) {
 		Account newAccount = this.json.getObjectForJSON(account, Account.class);
 		String username = newAccount.getName();
 		String password = newAccount.getPassword();
 
-		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE name = '" + username + "'",
+		TypedQuery<Account> query = this.em.createQuery(
+				"SELECT a FROM Account a WHERE name = '" + username + "' AND password = '" + password + "' ",
 				Account.class);
 
-		Account logAcc = (Account) query.getSingleResult();
-
-		return this.json.getJSONForObject(logAcc) + "This";
+		try {
+			Account logAcc = (Account) query.getSingleResult();
+			return this.json.getJSONForObject(logAcc) + "This";
+		} catch (NoResultException nre) {
+			return createAccount(account);
+		}
 	}
 
 	public boolean checkUsername(String account) {
