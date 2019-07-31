@@ -22,8 +22,15 @@ public class AccountDBRepositry implements AccountRepository {
 	@Inject
 	private JSONUtil json;
 
+	@Transactional(value = TxType.REQUIRED)
 	public String getAllAccounts() {
 		TypedQuery<Account> query = em.createQuery("SELECT a FROM Account a", Account.class);
+		return json.getJSONForObject(query.getResultList());
+	}
+
+	@Transactional(value = TxType.REQUIRED)
+	public String getAccount(String id) {
+		TypedQuery<Account> query = em.createQuery("SELECT a FROM Account a WHERE ID = '" + id + "'", Account.class);
 		return json.getJSONForObject(query.getResultList());
 	}
 
@@ -31,7 +38,7 @@ public class AccountDBRepositry implements AccountRepository {
 	public String createAccount(String account) {
 		Account toCreate = this.json.getObjectForJSON(account, Account.class);
 		this.em.persist(toCreate);
-		return SUCCESS;
+		return this.json.getJSONForObject(toCreate.getId());
 	}
 
 	@Transactional(value = TxType.REQUIRED)
@@ -50,12 +57,8 @@ public class AccountDBRepositry implements AccountRepository {
 		current.setName(toChange.getName());
 		current.setPassword(toChange.getPassword());
 
-		this.em.persist(toChange);
-		return SUCCESS + toChange;
-	}
-
-	public Account findAccount(Long id) {
-		return em.find(Account.class, id);
+		this.em.persist(current);
+		return SUCCESS + this.json.getJSONForObject(current);
 	}
 
 	@Transactional(value = TxType.REQUIRED)
@@ -67,13 +70,14 @@ public class AccountDBRepositry implements AccountRepository {
 		TypedQuery<Account> query = this.em.createQuery(
 				"SELECT a FROM Account a WHERE name = '" + username + "' AND password = '" + password + "' ",
 				Account.class);
-
+		Account logAcc = null;
 		try {
-			Account logAcc = (Account) query.getSingleResult();
-			return this.json.getJSONForObject(logAcc) + "This";
+			logAcc = (Account) query.getSingleResult();
 		} catch (NoResultException nre) {
-			return createAccount(account);
+			createAccount(account);
+			logAcc = (Account) query.getSingleResult();
 		}
+		return this.json.getJSONForObject(logAcc.getId());
 	}
 
 	public boolean checkUsername(String account) {

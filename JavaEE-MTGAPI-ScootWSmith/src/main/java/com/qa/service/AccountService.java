@@ -9,7 +9,7 @@ public interface AccountService {
 
 	String updateAccount(int accountId, String account);
 
-	String getAccount(Integer id);
+	String getAccount(String id);
 
 	String login(String account);
 

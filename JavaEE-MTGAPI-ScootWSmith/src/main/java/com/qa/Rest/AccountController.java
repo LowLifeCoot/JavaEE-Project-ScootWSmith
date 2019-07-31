@@ -33,7 +33,7 @@ public class AccountController {
 
 	@Path("/get/{id}")
 	@GET
-	public String getAccount(@PathParam("id") Integer id) {
+	public String getAccount(@PathParam("id") String id) {
 		return service.getAccount(id);
 	}
 

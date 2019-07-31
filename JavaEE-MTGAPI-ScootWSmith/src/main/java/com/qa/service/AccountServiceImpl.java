@@ -15,7 +15,6 @@ public class AccountServiceImpl implements AccountService {
 
 	public String createAccount(String account) {
 		return this.repo.createAccount(account);
-
 	}
 
 	public String deleteAccount(int accountId) {
@@ -26,8 +25,8 @@ public class AccountServiceImpl implements AccountService {
 		return this.repo.updateAccount(accountId, account);
 	}
 
-	public String getAccount(Integer id) {
-		return this.repo.getAllAccounts();
+	public String getAccount(String id) {
+		return this.repo.getAccount(id);
 	}
 
 	public String login(String account) {

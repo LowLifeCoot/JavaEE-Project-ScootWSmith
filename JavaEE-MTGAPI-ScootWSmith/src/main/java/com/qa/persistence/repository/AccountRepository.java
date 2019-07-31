@@ -15,4 +15,6 @@ public interface AccountRepository {
 	boolean checkUsername(String account);
 
 	String login(String account);
+
+	String getAccount(String id);
 }
